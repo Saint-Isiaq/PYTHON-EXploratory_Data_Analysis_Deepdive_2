@@ -1,0 +1,145 @@
+"""
+======================================================
+##DB Creation AND Connection Using Python
+#Exercise .
+======================================================   """
+
+# Import necessary module
+from sqlalchemy import create_engine
+
+# Create engine: engine
+engine = create_engine('sqlite:///Chinook.sqlite')
+"""NOTE📒:
+        engine = create_engine('db_engine:///schemaname.db_engine')"""
+
+
+"""
+======================================================
+##DB Creation AND Connection: printing Tables From The Engine
+#Exercise .
+======================================================   """
+
+# Import necessary module
+from sqlalchemy import create_engine
+
+# Creating engine: engine
+engine = create_engine('sqlite:///Chinook.sqlite')
+"""NOTE📒:
+        engine = create_engine('db_engine:///schemaname.db_engine')"""
+
+# Saving the table names to a list: table_names
+table_names = engine.table_names()
+
+# Printing the table names to the shell
+print(table_names)
+
+"""
+======================================================
+##DB Creation AND Connection: Querying Data Tables From The Engine
+#Exercise .
+======================================================   """
+
+# Import packages
+from sqlalchemy import create_engine
+import pandas as pd
+
+# Creating engine: engine
+engine = create_engine('sqlite:///Chinook.sqlite')
+"""NOTE📒:
+        engine = create_engine('db_engine:///schemaname.db_engine')"""
+
+# Opening engine connection: con
+con = engine.connect()
+
+# Performing query: rs
+rs = con.execute("SELECT * FROM Album")
+
+# Saving results of the query to DataFrame: df
+df = pd.DataFrame(rs.fetchall())
+
+# Closing connection
+con.close()
+
+# Print head of DataFrame df
+print(df.head())
+
+"""
+======================================================
+##DB Query: Querying Data Tables Using a Context Manger 
+#Exercise .
+======================================================   """
+
+# Import packages
+from sqlalchemy import create_engine
+import pandas as pd
+
+# Creating engine: engine
+engine = create_engine('sqlite:///Chinook.sqlite')
+"""NOTE📒:
+        engine = create_engine('db_engine:///schemaname.db_engine')"""
+"""
+The Context Manager Format : with 
+"""
+# Perform query and save results to DataFrame: df
+with engine.connect() as con:
+    rs = con.execute("SELECT LastName,Title FROM Employee")
+    df = pd.DataFrame(rs.fetchmany(size=3))
+    df.columns = rs.keys()
+
+# Print the length of the DataFrame df
+print(len(df))
+
+# Print the head of the DataFrame df
+print(df.head())
+
+"""
+======================================================
+##DB Query: Querying Data Tables: Where Clause Filtering 
+#Exercise .
+======================================================  """
+##PACKAGE IMPORTS
+from sqlalchemy import create_engine
+import pandas as pd
+
+# Creating engine: engine
+engine = create_engine('sqlite:///Chinook.sqlite')
+"""NOTE📒:
+        engine = create_engine('db_engine:///schemaname.db_engine')"""
+
+# Opening engine in context manager
+# Performing query and save results to DataFrame: df
+with engine.connect() as con:
+    rs = con.execute('SELECT * FROM Employee WHERE "EmployeeId" >= 6')
+    df = pd.DataFrame(rs.fetchall())
+    df.columns = rs.keys()
+
+# Printing the head of the DataFrame df
+print(df.head())
+
+"""
+======================================================
+##DB Query: Querying Data Tables:Order By Clause
+#Exercise .
+====================================================== """
+
+##PACKAGE IMPORTS
+from sqlalchemy import create_engine
+import pandas as pd
+
+# Create engine: engine
+engine = create_engine('sqlite:///Chinook.sqlite')
+
+# Open engine in context manager
+with engine.connect() as con:
+    rs = con.execute('SELECT * FROM Employee ORDER BY BirthDate ASC')
+    df = pd.DataFrame(rs.fetchall())
+
+    # Set the DataFrame's column names
+    df.columns = rs.keys()
+
+# Print head of DataFrame
+print(df.head())
+
+
+
+
