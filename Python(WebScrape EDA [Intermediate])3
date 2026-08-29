@@ -72,8 +72,76 @@ print(xls['1700'].head())
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 =====================================================
-##WebScrape :Getting API'S Data Through PYTHON CODES : HTTPS
+Exercise .
+            ======================
+""" Needed Packages """
+# Importing packages
+from urllib.request import urlopen,Request
+
+# Specify the url
+url = "https://campus.datacamp.com/courses/1606/4135?ex=2"  """ The Website URL Link Goes Here """
+
+# This packages the request: request
+request = Request(url)
+
+# Sending the request and catching the response: response
+response = urlopen(request)
+
+# Printing the datatype of response
+print(type(response))
+
+#closing the response!
+response.close()
+
+
+
+=====================================================
 Exercise .
             ======================
 
+# Importing packages
+from urllib.request import urlopen, Request
+
+# Specifying the url
+url = "https://campus.datacamp.com/courses/1606/4135?ex=2"
+
+# This packages the request
+request = Request(url)
+
+# Sending the request and catching the response: response
+response = urlopen(request)
+
+# Extracting the response: html
+html = response.read()
+
+# Printing the html
+print(html)
+
+# close the response!
+response.close()
+
+=====================================================
+WEBSCRAPE (GET requests Using Requests)
+Exercise .
+            ======================
+
+# Importing package
+import requests
+
+# Specifying the url: url
+url = "http://www.datacamp.com/teach/documentation"
+
+# Packaging the request, sending the request and catching the response: r
+r = requests.get(url)
+
+# Extracting the response: text
+text = r.text
+
+# Print the html
+print(text)
+
+=====================================================
+WEBSCRAPE (Using BEAUTIFUL SOUP)
+Exercise .
+            ======================
 
