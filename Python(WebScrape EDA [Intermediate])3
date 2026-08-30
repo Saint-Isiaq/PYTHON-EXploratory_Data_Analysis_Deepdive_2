@@ -10,7 +10,7 @@ from urllib.request import urlretrieve
 import pandas as pd
 
 # Assigning url of file: url
-url = 'https://assets.datacamp.com/production/course_1606/datasets/winequality-red.csv'
+url = 'https://example.com'
     """WebSite's URL Link Goes Here"""
 
 # Saving file locally
@@ -103,7 +103,7 @@ Exercise .
 from urllib.request import urlopen, Request
 
 # Specifying the url
-url = "https://campus.datacamp.com/courses/1606/4135?ex=2"
+url = "https://example.com"
 
 # This packages the request
 request = Request(url)
@@ -141,7 +141,96 @@ text = r.text
 print(text)
 
 =====================================================
-WEBSCRAPE (Using BEAUTIFUL SOUP)
+WEBSCRAPE URL (Using BEAUTIFUL SOUP) Beautifying Web HTML Texts
 Exercise .
             ======================
+
+""" Needed Packages """
+# Import packages
+import requests
+from bs4 import BeautifulSoup
+
+# Specifying url: url
+url = 'https://www.python.org/~guido/'
+
+# Packaging the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Extracting the response as html: html_doc
+html_doc = r.text
+
+# Creating a BeautifulSoup object from the HTML: soup
+soup = BeautifulSoup(html_doc)
+
+# Prettifying the BeautifulSoup object: pretty_soup
+pretty_soup = soup.prettify()
+
+# Printing the response
+print(pretty_soup)
+
+
+=====================================================
+WEBSCRAPE URL (Using BEAUTIFUL SOUP) Extracting Data From Website
+Exercise .
+            ======================
+
+# Import packages
+import requests
+from bs4 import BeautifulSoup
+
+# Specifying url: url
+url = 'https://www.python.org/~guido/'
+
+# Package the request, send the request and catch the response: r
+r = requests.get(url)
+
+# Extracting the response as html: html_doc
+html_doc = r.text
+
+# Creating a BeautifulSoup object from the HTML: soup
+soup = BeautifulSoup(html_doc)
+
+# Getting the title of Guido's webpage: guido_title
+guido_title = soup.title
+
+# Printing the title of Guido's webpage to the shell
+print(guido_title)
+
+# Getting Guido's text: guido_text
+guido_text = soup.text
+
+# Printing Guido's text to the shell
+print(guido_text)
+
+
+=====================================================
+WEBSCRAPE URL (Using BEAUTIFUL SOUP) Extracting HyperLinks From Websites
+Exercise .
+            ======================
+
+# Import packages
+import requests
+from bs4 import BeautifulSoup
+
+# Specifying url
+url = 'https://www.python.org/~guido/'
+
+# Packaging the request, sending the request and catch the response: r
+r = requests.get(url)
+
+# Extracting the response as html: html_doc
+html_doc = r.text
+
+# creating a BeautifulSoup object from the HTML: soup
+soup = BeautifulSoup(html_doc)
+
+# Printing the title of Guido's webpage
+print(soup.title)
+
+# Finding all 'a' tags (which define hyperlinks): a_tags
+a_tags = soup.find_all('a')
+
+# Printing the URLs to the shell
+for link in a_tags:
+    print(link.get('href'))
 
